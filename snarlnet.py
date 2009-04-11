@@ -154,7 +154,7 @@ if __name__ == '__main__':
     parser.add_option("-a", "--action", dest="action", choices=["register","unregister","addclass","notify"],
                       help="Action to take (register, unregister, addclass, notify)", type="choice")
     parser.add_option("-t", "--timeout", dest="timeout", type="int",
-                      help="How long snarl should display massage", default=10)
+                      help="How long snarl should display message", default=10)
     
     (options, args) = parser.parse_args()
     snarl = SnarlNet(ip=options.host, port=options.port)
