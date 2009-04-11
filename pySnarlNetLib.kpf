@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="727f4309-e62c-4b3a-9294-4b67ac5d255b" kpf_version="4" name="pySnarlNetLib.kpf">
+<preference-set idref="727f4309-e62c-4b3a-9294-4b67ac5d255b">
+  <boolean id="import_live">1</boolean>
+</preference-set>
+</project>
