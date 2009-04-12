@@ -34,8 +34,11 @@ OTHER DEALINGS IN THE SOFTWARE.
 import sys
 import socket
 
+__version__ = (0, 1, 1)
+__author__ = "Łukasz Bołdys"
 
-class SnarlNet(object):
+
+class SnarlNet(object):    
     lastAppName = ""
     lastClassName = ""
     addedClasses = []
@@ -44,6 +47,13 @@ class SnarlNet(object):
     port = 9887 #if no port provided than use default snarl net port
     
     def __init__(self, *args, **argv):
+        """
+        Create object of class SnarlNet
+        IP and port can be passed as 'ip' and 'port' parameters
+        Ie. snarl = SnarlNet(ip="192.168.1.4", port=9887)
+        When no parameters are passed than ip='127.0.0.1' and port=9887 are used
+        
+        """
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         if argv.has_key("ip"):
             self.ip = argv["ip"]        
@@ -85,6 +95,7 @@ class SnarlNet(object):
         Send message with given title and text.
         If no appName or appClass is provided than uses
         self.lastAppName and/or self.lastClassName
+        
         """
         appName = self.lastAppName
         className = self.lastClassName
@@ -100,7 +111,6 @@ class SnarlNet(object):
         if className == "":
             className = "pySnarlNetLibClass"
         sendStr = "type=SNP#?version=1.0#?action=notification#?app=%s#?class=%s#?title=%s#?text=%s#?timeout=%d\r\n" % (appName,className,title,text,timeout)
-        #print sendStr
         self.__send(sendStr)
         self.lastAppName = appName
         self.lastClassName = className
@@ -140,7 +150,7 @@ class SnarlNet(object):
 if __name__ == '__main__':
     from optparse import OptionParser
     
-    parser = OptionParser(usage="%prog -a ACTION [options] args")
+    parser = OptionParser(usage="%prog -a ACTION [options] args", version="%prog " + ".".join([str(x) for x in __version__]))
     parser.add_option("-i", "--ipaddr", dest="host",
                       help="IP address of the machine with snarl installed (default: %default)",
                       type="string", default="127.0.0.1")
